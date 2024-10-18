@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Collections List</title>
+  <script>
+    function loadCollections() {
+      fetch('/collections')
+        .then(response => response.json())
+        .then(collections => {
+            const collectionsList = document.getElementById('collections-list');
+            collectionsList.innerHTML = ''; 
+
+
+            if (collections.length == 0){
+                const p = document.createElement('p');
+                p.textContent = 'No Collection Routes found.';
+                document.getElementById('collections-list').appendChild(p);
+            }else{
+                collections.forEach(collection => {
+                    const li = document.createElement('li');
+                    const link = document.createElement('a');
+                    const p = document.createElement('p');
+                    link.href = `/${collection}`;
+                    link.textContent = collection;
+                    li.appendChild(link);
+
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.textContent = 'Del Route';
+                    deleteBtn.style.marginLeft = '10px';
+                    deleteBtn.onclick = function () {
+                        deleteCollection(collection); 
+                    };
+                    li.appendChild(deleteBtn);
+
+                    const textContent = `To access and modify resources, you can use any HTTP method:
+
+        GET, POST, PUT, PATCH, DELETE, OPTIONS`
+
+                    p.innerText = textContent;
+                    li.appendChild(p);
+                    li.appendChild(deleteBtn);
+                    collectionsList.appendChild(li);
+                });
+            }
+        });
+    }
+
+    function deleteCollection(collectionName) {
+      if (confirm(`Are you sure you want to delete the entire collection '${collectionName}'?`)) {
+        fetch(`/delete-collection/${collectionName}`, {
+          method: 'DELETE',
+        })
+        .then(response => response.json())
+        .then(result => {
+          alert(result.message || result.error);
+          loadCollections(); 
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+      }
+    }
+
+    window.onload = function() {
+      loadCollections();
+    };
+  </script>
+</head>
+<body>
+    <h1>Fake Json Server Mini App</h1>
+
+    <a href="/new-collection">Create a New Collection Route</a>
+
+    <h3>Available Collections (Routes)</h3>
+    <ul id="collections-list">
+    </ul>
+    <br>
+</body>
+</html>

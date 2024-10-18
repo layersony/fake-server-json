@@ -13,11 +13,11 @@ let db = JSON.parse(fs.readFileSync(dbFilePath, 'utf-8'));
 server.use(bodyParser.urlencoded({ extended: true }));
 
 server.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
 server.get('/new-collection', (req, res) => {
-  res.sendFile(path.join(__dirname, 'newCollection.html'));
+  res.sendFile(path.join(__dirname, 'public/newCollection.html'));
 });
 
 server.get('/collections', (req, res) => {
