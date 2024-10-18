@@ -1,28 +1,4 @@
 {
-  "duties": [
-    {
-      "name": "Vinitta",
-      "cleaning_time": "After Lunch",
-      "duty": "Wash house",
-      "id": "3err3"
-    },
-    {
-      "id": "a125",
-      "name": "Jane",
-      "cleaning_time": "After Supper",
-      "duty": "choose movie"
-    },
-    {
-      "id": "f6a8",
-      "name": "maingi",
-      "cleaning_time": "After Supper",
-      "duty": "close doors"
-    },
-    {
-      "id": "5d03",
-      "name": "Ahmed",
-      "cleaning_time": "at 4pm",
-      "duty": "prepare tea"
-    }
-  ]
+  "games": [],
+  "builder": []
 }

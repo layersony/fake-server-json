@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Collection</title>
+</head>
+<body>
+
+  <a href="/">List All Routes</a>
+
+  <h1>Create New Collection</h1>
+  <form action="/add-collection" method="POST">
+    <label for="collectionName">Collection Name:</label>
+    <input type="text" id="collectionName" name="collectionName" required><br><br>
+    
+    <label for="data">Collection Data (JSON format):</label><br>
+    <textarea id="data" name="data" rows="10" cols="30" required>
+[
+  {
+    "id": "1",
+    "name": "Sample Item",
+    "description": "Description for item"
+  }
+]
+    </textarea><br><br>
+    
+    <input type="submit" value="Create Collection">
+
+  </form>
+
+</body>
+</html>
