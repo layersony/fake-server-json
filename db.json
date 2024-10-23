@@ -1,1 +1,9 @@
-{}
+{
+  "games": [
+    {
+      "id": "1",
+      "name": "Sample Item",
+      "description": "Description for item"
+    }
+  ]
+}

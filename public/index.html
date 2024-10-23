@@ -5,6 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Collections List</title>
   <script>
+    function copyBtnFunc(collName) {
+      let currentUrl = window.location.href;
+      let newUrl = `${currentUrl}${collName}`;
+      
+      navigator.clipboard.writeText(newUrl)
+      .then(() => {
+          alert("Copied the Link");
+      })
+      .catch(err => {
+          console.error('Failed to copy: ', err);
+      });
+  }
+
     function loadCollections() {
       fetch('/collections')
         .then(response => response.json())
@@ -39,6 +52,14 @@
         GET, POST, PUT, PATCH, DELETE, OPTIONS`
 
                     p.innerText = textContent;
+                    const copybtn = document.createElement('button');
+                    copybtn.textContent = 'Copy Route';
+                    copybtn.onclick = function () {
+                        copyBtnFunc(collection);
+                    };
+                    copybtn.style.marginLeft = '10px';
+
+                    li.append(copybtn)
                     li.appendChild(p);
                     li.appendChild(deleteBtn);
                     collectionsList.appendChild(li);
